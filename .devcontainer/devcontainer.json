@@ -1,26 +1,11 @@
 {
-  "name": "Next.js + Tailwind + Supabase",
-  "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
+  "name": "CleverDevContainer",
+  "image": "mcr.microsoft.com/devcontainers/universal",
   "postCreateCommand": "npm install && npm install -g supabase",
-  "customizations": {
-    "vscode": {
-      "extensions": [
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
-        "bradlc.vscode-tailwindcss",
-        "ms-azuretools.vscode-docker"
-      ]
-    }
-  },
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
     }
-  },
-  "portsAttributes": {
-    "3000": {
-      "label": "Next.js App",
-      "onAutoForward": "openPreview"
-    }
   }
 }
+
