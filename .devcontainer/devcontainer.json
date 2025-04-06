@@ -1,11 +1,12 @@
 {
   "name": "CleverDevContainer",
   "image": "mcr.microsoft.com/devcontainers/universal",
-  "postCreateCommand": "npm install && npm install -g supabase",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
     }
+    "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {}
+
   }
 }
 
