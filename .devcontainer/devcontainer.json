@@ -4,9 +4,24 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
-    }
+    },
     "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {}
-
+  },
+  // Optional extras
+  "postCreateCommand": "npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js App",
+      "onAutoForward": "openBrowser"
+    }
   }
 }
-
