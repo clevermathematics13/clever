@@ -7,7 +7,6 @@
     },
     "ghcr.io/devcontainers-contrib/features/supabase-cli:1": {}
   },
-  // Optional extras
   "postCreateCommand": "npm install",
   "customizations": {
     "vscode": {
@@ -23,5 +22,8 @@
       "label": "Next.js App",
       "onAutoForward": "openBrowser"
     }
-  }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.npm,target=/home/vscode/.npm,type=bind"
+  ]
 }
