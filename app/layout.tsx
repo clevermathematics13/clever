@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SupabaseProvider from "./supabase-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <nav className="bg-gray-100 px-6 py-4 shadow flex gap-4 items-center text-sm">
+          <a href="/" className="text-blue-600 font-bold hover:underline">🏠 Home</a>
+          <a href="/profiles" className="text-blue-600 hover:underline">👥 Profiles</a>
+          {/* You can add more links here later like /dashboard, /login, etc. */}
+        </nav>
+        <SupabaseProvider>
+          <main className="p-6">
+            {children}
+          </main>
+        </SupabaseProvider>
       </body>
     </html>
   );
