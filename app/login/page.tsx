@@ -2,22 +2,24 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createBrowserClient } from '@supabase/auth-helpers-nextjs'
+// ⬇️ Import from @supabase/auth-helpers-react, not nextjs
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function LoginPage() {
   const router = useRouter()
+
+  // Local form state
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
 
-  // Create a local Supabase client using your env variables
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  // Create a single supabase browser client
+  const [supabase] = useState(() => createBrowserSupabaseClient())
 
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    // Now call signInWithPassword
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -26,7 +28,7 @@ export default function LoginPage() {
     if (error) {
       setError(error.message)
     } else {
-      // Successful login, redirect to home page
+      // Redirect to home page on success
       router.push('/')
     }
   }
