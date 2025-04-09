@@ -1,6 +1,5 @@
 {
   "name": "CleverDevContainer",
-  "image": "mcr.microsoft.com/devcontainers/universal",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "18"
