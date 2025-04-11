@@ -3,18 +3,20 @@ import type { Metadata } from "next";
 import { Inter, Fira_Mono } from "next/font/google";
 import "./globals.css";
 import SupabaseProvider from "./supabase-provider";
-import LogoutButton from "@/components/LogoutButton"; // Example import
+import LogoutButton from "@/components/LogoutButton";
 
-// Replace Geist with Inter
+// Import Inter font with specific weights
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "700"], // Use valid weights for Inter (adjust as needed)
 });
 
-// Replace Geist_Mono with Fira_Mono
+// Import Fira_Mono font with valid weights
 const firaMono = Fira_Mono({
   variable: "--font-fira-mono",
   subsets: ["latin"],
+  weight: ["400", "500", "700"], // Valid weights for Fira Mono
 });
 
 export const metadata: Metadata = {
@@ -27,7 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${inter.variable} ${firaMono.variable} antialiased`}>
         <nav className="bg-gray-100 px-6 py-4 shadow flex items-center justify-between text-sm">
-          {/* your nav links */}
+          <div className="flex gap-4 items-center">
+            <a href="/" className="text-blue-600 font-bold hover:underline">🏠 Home</a>
+            <a href="/profiles" className="text-blue-600 hover:underline">👥 Profiles</a>
+          </div>
           <LogoutButton />
         </nav>
         <SupabaseProvider>
