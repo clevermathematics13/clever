@@ -1,27 +1,25 @@
-// components/LogoutButton.tsx
-"use client";
+"use client"
 
-import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation"
+import { supabaseBrowser } from "@/lib/supabaseBrowser"
 
 export default function LogoutButton() {
-  const router = useRouter();
+  const router = useRouter()
+  const supabase = supabaseBrowser
 
-  // Immediate logout with no confirmation (Option A)
   const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      console.error("Error signing out:", error.message);
-    }
-    router.push("/login"); // Redirect after logout
-  };
+    const { error } = await supabase.auth.signOut()
+    if (error) console.error("Error signing out:", error.message)
+    router.refresh()
+    router.push("/login")
+  }
 
   return (
     <button
       onClick={handleLogout}
-      className="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+      className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
     >
       Logout
     </button>
-  );
+  )
 }

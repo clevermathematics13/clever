@@ -1,0 +1,45 @@
+.
+├── README.md
+├── app
+│   ├── ClientOnly.tsx
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── login
+│   │   └── page.tsx
+│   ├── page.tsx
+│   ├── signup
+│   │   └── page.tsx
+│   ├── student
+│   │   └── dashboard
+│   ├── supabase-provider.tsx
+│   └── system-overview
+│       └── page.tsx
+├── components
+│   ├── LogoutButton.tsx
+│   └── auth
+│       ├── GoogleLogin.tsx
+│       └── callback
+├── keep_alive.sh
+├── lib
+│   └── supabaseClient.ts
+├── next-env.d.ts
+├── next.config.js
+├── nohup.out
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public
+│   ├── CleverMathematics-logo.png
+│   ├── Sphere.gif
+│   ├── file.svg
+│   ├── globe.svg
+│   ├── next.svg
+│   ├── vercel.svg
+│   └── window.svg
+├── structure.txt
+├── supabase
+│   └── config.toml
+└── tsconfig.json
+
+12 directories, 30 files

@@ -1,25 +1,45 @@
-"use client";
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSupabase } from "@/app/supabase-provider";
+// app/student/dashboard/page.tsx
+import { cookies } from 'next/headers'
+import { createServerClient } from '@supabase/ssr'
 
-export default function StudentDashboard() {
-  const { session } = useSupabase();
-  const router = useRouter();
+export default async function StudentDashboard() {
+  const cookieStore = cookies()
 
-  useEffect(() => {
-    // If no active session, redirect to login page
-    if (!session) {
-      router.push("/login");
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        get(name: string) {
+          return cookieStore.get(name)?.value
+        },
+        set() {
+          // You can implement this later if needed
+        },
+        remove() {
+          // You can implement this later if needed
+        }
+      }
     }
-  }, [session, router]);
+  )
 
-  // If session exists, render the dashboard content
+  const {
+    data: { session },
+  } = await supabase.auth.getSession()
+
+  if (!session) {
+    return (
+      <main className="p-8">
+        <h1 className="text-2xl font-bold">Unauthorized</h1>
+        <p>You must be logged in to view this page.</p>
+      </main>
+    )
+  }
+
   return (
-    <div className="p-6">
+    <main className="p-6">
       <h1 className="text-2xl font-bold mb-4">Student Dashboard</h1>
-      <p>Welcome to your dashboard!</p>
-      {/* Insert more dashboard content/components here */}
-    </div>
-  );
+      <p>Welcome to your dashboard, {session.user.email}!</p>
+    </main>
+  )
 }
