@@ -19,23 +19,20 @@ export default function Header() {
       const {
         data: { session },
       } = await supabase.auth.getSession();
-
       setUser(session?.user || null);
     };
 
-    // Get initial session
     getUser();
 
-    // Listen for changes
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setUser(session?.user || null);
-        router.refresh();
-      }
-    );
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(() => {
+      getUser();
+      router.refresh();
+    });
 
     return () => {
-      listener?.subscription.unsubscribe();
+      subscription.unsubscribe();
     };
   }, [supabase, router]);
 
@@ -50,7 +47,6 @@ export default function Header() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    setUser(null);
     router.refresh();
   };
 
