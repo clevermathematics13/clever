@@ -12,14 +12,14 @@
 │   ├── page.tsx
 │   ├── student
 │   │   └── dashboard
-│   ├── supabase-provider.tsx
-│   └── system-overview
-│       └── page.tsx
+│   └── supabase-provider.tsx
 ├── components
 │   ├── Header.tsx
 │   ├── LogoutButton.tsx
 │   └── auth
 │       └── GoogleLogin.tsx
+├── docs
+│   └── clever-overview.md
 ├── keep_alive.sh
 ├── lib
 │   ├── supabaseBrowser.ts
