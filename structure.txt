@@ -2,26 +2,27 @@
 ├── README.md
 ├── app
 │   ├── ClientOnly.tsx
+│   ├── auth
+│   │   └── callback
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.tsx
 │   ├── login
 │   │   └── page.tsx
 │   ├── page.tsx
-│   ├── signup
-│   │   └── page.tsx
 │   ├── student
 │   │   └── dashboard
 │   ├── supabase-provider.tsx
 │   └── system-overview
 │       └── page.tsx
 ├── components
+│   ├── Header.tsx
 │   ├── LogoutButton.tsx
 │   └── auth
-│       ├── GoogleLogin.tsx
-│       └── callback
+│       └── GoogleLogin.tsx
 ├── keep_alive.sh
 ├── lib
+│   ├── supabaseBrowser.ts
 │   └── supabaseClient.ts
 ├── next-env.d.ts
 ├── next.config.js
@@ -40,6 +41,7 @@
 ├── structure.txt
 ├── supabase
 │   └── config.toml
-└── tsconfig.json
+├── tsconfig.json
+└── vercel.json
 
-12 directories, 30 files
+12 directories, 32 files

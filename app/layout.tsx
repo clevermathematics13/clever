@@ -1,19 +1,25 @@
+// app/layout.tsx
 import "./globals.css"
-import Header from "@/components/Header"   // ← change
-
 import type { ReactNode } from "react"
+import LogoutButton from "@/components/LogoutButton"
+import Link from "next/link"
 
 export const metadata = {
   title: "CleverMathematics",
-  description: "Educational platform",
+  description: "PDF assignments for students",
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-gray-50 text-gray-900">
-        <Header />            {/* ← new header that auto‑switches */}
-        <main className="p-6">{children}</main>
+      <body className="p-6">
+        <header className="flex justify-between items-center mb-6">
+          <div className="text-xl font-bold">
+            <Link href="/">📘 CleverMathematics</Link>
+          </div>
+          <LogoutButton />
+        </header>
+        {children}
       </body>
     </html>
   )
