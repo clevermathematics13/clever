@@ -1,4 +1,3 @@
-// components/Header.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -17,16 +16,28 @@ export default function Header() {
 
   useEffect(() => {
     const getUser = async () => {
-      const { data, error } = await supabase.auth.getUser();
-      if (data?.user) {
-        setUser(data.user);
-      } else {
-        setUser(null);
-      }
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
+      setUser(session?.user || null);
     };
 
+    // Get initial session
     getUser();
-  }, [supabase]);
+
+    // Listen for changes
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setUser(session?.user || null);
+        router.refresh();
+      }
+    );
+
+    return () => {
+      listener?.subscription.unsubscribe();
+    };
+  }, [supabase, router]);
 
   const handleLogin = async () => {
     await supabase.auth.signInWithOAuth({
@@ -39,6 +50,7 @@ export default function Header() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    setUser(null);
     router.refresh();
   };
 
