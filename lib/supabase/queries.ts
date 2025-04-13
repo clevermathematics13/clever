@@ -1,11 +1,9 @@
 // lib/supabase/queries.ts
 'use client';
 
-import { createBrowserClient } from '@supabase/ssr';
+import { supabase } from './browser-client';
 
 export const fetchQuestions = async () => {
-  const supabase = createBrowserClient();
-
   const { data, error } = await supabase
     .from('questions')
     .select('*')
