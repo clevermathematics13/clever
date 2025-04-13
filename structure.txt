@@ -22,6 +22,9 @@
 │   └── clever-overview.md
 ├── keep_alive.sh
 ├── lib
+│   ├── supabase
+│   │   ├── browser-client.ts
+│   │   └── queries.ts
 │   ├── supabaseBrowser.ts
 │   └── supabaseClient.ts
 ├── next-env.d.ts
@@ -44,4 +47,4 @@
 ├── tsconfig.json
 └── vercel.json
 
-12 directories, 32 files
+13 directories, 34 files
