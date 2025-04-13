@@ -12,7 +12,6 @@
     "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/auth-helpers-react": "^0.5.0",
     "@supabase/ssr": "^0.6.1",
-    "@supabase/supabase-js": "^2.49.4",
     "autoprefixer": "^10.4.21",
     "bufferutil": "^4.0.9",
     "next": "^13.5.4",
@@ -22,6 +21,7 @@
     "utf-8-validate": "^6.0.5"
   },
   "devDependencies": {
+    "@supabase/supabase-js": "^2.49.4",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

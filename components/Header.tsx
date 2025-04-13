@@ -1,4 +1,3 @@
-// components/Header.tsx
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -6,7 +5,9 @@ import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
-  const [supabase] = useState(() => createBrowserClient());
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+  const [supabase] = useState(() => createBrowserClient(supabaseUrl, supabaseKey));
   const [user, setUser] = useState<any>(null);
   const router = useRouter();
 
