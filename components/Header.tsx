@@ -6,14 +6,16 @@ import { createBrowserClient } from '@supabase/ssr';
 import { useRouter } from 'next/navigation';
 
 export default function Header() {
-  const supabase = createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
+  const [supabase] = useState(() =>
+    createBrowserClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
   );
 
-  const router = useRouter();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const getUser = async () => {
@@ -26,15 +28,7 @@ export default function Header() {
     };
 
     getUser();
-
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => {
-      listener.subscription.unsubscribe();
-    };
-  }, []);
+  }, [supabase]);
 
   const handleLogin = async () => {
     await supabase.auth.signInWithOAuth({
@@ -47,26 +41,25 @@ export default function Header() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    setUser(null);
     router.refresh();
   };
 
   return (
-    <header className="flex justify-between items-center p-4 border-b border-gray-700">
-      <div className="text-blue-400 font-semibold text-xl">📘 CleverMathematics</div>
+    <header className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="text-blue-600 font-semibold text-xl">📘 CleverMathematics</div>
       <div>
-        {!loading && (
-          user ? (
-            <button
-              onClick={handleLogout}
-              className="text-sm text-red-400 hover:text-red-200 transition"
-            >
-              Logout
-            </button>
-          ) : (
+        {!loading && user ? (
+          <button
+            onClick={handleLogout}
+            className="text-sm text-red-500 hover:text-red-300 transition"
+          >
+            Logout
+          </button>
+        ) : (
+          !loading && (
             <button
               onClick={handleLogin}
-              className="text-sm text-green-400 hover:text-green-200 transition"
+              className="text-sm text-green-600 hover:text-green-400 transition"
             >
               Login
             </button>
