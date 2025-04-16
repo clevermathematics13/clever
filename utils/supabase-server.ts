@@ -1,16 +1,38 @@
 // utils/supabase-server.ts
-import { cookies } from 'next/headers'
-import { createServerClient } from '@supabase/ssr'
+import { createServerClient } from "@supabase/ssr"
+import { cookies } from "next/headers"
 
 /**
- * Returns a Supabase client configured to read/write the
- * secure auth cookies on the server.
+ * Server‑side Supabase client bound to the current request’s cookies.
+ * Compatible with @supabase/ssr 0.6.x API.
  */
 export const supabaseServer = () =>
   createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    { cookies }
-  )
+    {
+      cookies: {
+        /* read a cookie */
+        get(name: string) {
+          return cookies().get(name)?.value
+        },
 
-  
+        /* set / update a cookie */
+        set(
+          name: string,
+          value: string,
+          options?: Parameters<ReturnType<typeof cookies>["set"]>[1]
+        ) {
+          cookies().set(name, value, options)
+        },
+
+        /* delete a cookie */
+        remove(
+          name: string,
+          options?: Parameters<ReturnType<typeof cookies>["delete"]>[1]
+        ) {
+          cookies().delete(name, options)
+        },
+      },
+    }
+  )
