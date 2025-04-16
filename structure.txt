@@ -13,11 +13,58 @@
 │   ├── student
 │   │   └── dashboard
 │   └── supabase-provider.tsx
+├── clever
+│   ├── README.md
+│   ├── app
+│   │   ├── ClientOnly.tsx
+│   │   ├── auth
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── login
+│   │   ├── page.tsx
+│   │   └── student
+│   ├── components
+│   │   ├── Header.tsx
+│   │   ├── LogoutButton.tsx
+│   │   ├── QuestionFilterClient.tsx
+│   │   ├── auth
+│   │   └── ui
+│   ├── components.json
+│   ├── docs
+│   │   └── clever-overview.md
+│   ├── keep_alive.sh
+│   ├── lib
+│   │   ├── supabase
+│   │   └── utils.ts
+│   ├── next-env.d.ts
+│   ├── next.config.js
+│   ├── nohup.out
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── postcss.config.mjs
+│   ├── public
+│   │   ├── CleverMathematics-logo.png
+│   │   ├── Sphere.gif
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   ├── structure.txt
+│   ├── supabase
+│   │   └── config.toml
+│   ├── tailwind.config.ts
+│   ├── tsconfig.json
+│   └── vercel.json
 ├── components
 │   ├── Header.tsx
 │   ├── LogoutButton.tsx
-│   └── auth
-│       └── GoogleLogin.tsx
+│   ├── QuestionFilterClient.tsx
+│   ├── auth
+│   │   └── GoogleLogin.tsx
+│   └── ui
+│       └── select.tsx
 ├── docs
 │   └── clever-overview.md
 ├── keep_alive.sh
@@ -44,7 +91,10 @@
 ├── structure.txt
 ├── supabase
 │   └── config.toml
+├── tailwind.config.ts
 ├── tsconfig.json
+├── utils
+│   └── supabase-server.ts
 └── vercel.json
 
-13 directories, 34 files
+28 directories, 69 files
