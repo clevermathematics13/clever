@@ -1,37 +1,35 @@
 // utils/supabase-server.ts
-import { createServerClient } from "@supabase/ssr"
-import { cookies } from "next/headers"
+import { cookies as nextCookies } from 'next/headers'
+import { createServerClient } from '@supabase/ssr'
 
-/**
- * Server‑side Supabase client bound to the current request’s cookies.
- * Compatible with @supabase/ssr 0.6.x API.
- */
+/** server‑side Supabase client that can read/write Next.js cookies */
 export const supabaseServer = () =>
   createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        /* read a cookie */
+        /** read a cookie */
         get(name: string) {
-          return cookies().get(name)?.value
+          return nextCookies().get(name)?.value
         },
-
-        /* set / update a cookie */
+        /** list all cookies */
+        getAll() {
+          return nextCookies()
+            .getAll()
+            .map(({ name, value }) => ({ name, value }))
+        },
+        /** set/update a cookie */
         set(
           name: string,
           value: string,
-          options?: Parameters<ReturnType<typeof cookies>["set"]>[1]
+          options?: Parameters<(typeof nextCookies)['set']>[1]
         ) {
-          cookies().set(name, value, options)
+          nextCookies().set(name, value, options)
         },
-
-        /* delete a cookie */
-        remove(
-          name: string,
-          options?: Parameters<ReturnType<typeof cookies>["delete"]>[1]
-        ) {
-          cookies().delete(name, options)
+        /** delete a cookie */
+        remove(name: string, options?: Parameters<(typeof nextCookies)['delete']>[1]) {
+          nextCookies().delete(name, options)
         },
       },
     }
