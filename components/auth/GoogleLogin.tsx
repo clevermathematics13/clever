@@ -1,32 +1,24 @@
 // components/auth/GoogleLogin.tsx
-"use client"
+'use client'
 
-import { supabaseBrowser } from "@/lib/supabaseBrowser"
+import { useRouter } from 'next/navigation'
+import { supabaseBrowser } from '@/lib/supabaseBrowser'
 
 export default function GoogleLogin() {
-  const supabase = supabaseBrowser
+  const router = useRouter()
 
   const handleLogin = async () => {
-    const redirectHost =
-      process.env.NEXT_PUBLIC_SITE_URL ?? window.location.origin
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${redirectHost}/auth/callback`, // 👈 always safe
-      },
+    const { error } = await supabaseBrowser.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/auth/callback` }
     })
-
-    if (error) {
-      console.error("Login error:", error.message)
-      alert("Login failed: " + error.message)
-    }
+    if (error) console.error('Login error:', error.message)
   }
 
   return (
     <button
       onClick={handleLogin}
-      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded shadow-md transition"
+      className="bg-white text-black px-4 py-2 rounded shadow hover:shadow-lg transition"
     >
       Sign in with Google
     </button>

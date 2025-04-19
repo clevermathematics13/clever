@@ -1,8 +1,8 @@
-// app/layout.tsx
 import './globals.css'
 import type { ReactNode } from 'react'
+import Providers from './providers'
 import Link from 'next/link'
-import SupabaseProvider from './supabase-provider'
+import LogoutButton from '@/components/LogoutButton'
 
 export const metadata = {
   title: 'CleverMathematics',
@@ -13,14 +13,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="p-6">
-        <header className="flex justify-between items-center mb-6">
-          <div className="text-xl font-bold">
-            <Link href="/">📘 CleverMathematics</Link>
-          </div>
-        </header>
-        <SupabaseProvider>
+        <Providers>
+          <header className="flex justify-between items-center mb-6">
+            <div className="text-xl font-bold">
+              <Link href="/">📘 CleverMathematics</Link>
+            </div>
+            <LogoutButton />
+          </header>
           {children}
-        </SupabaseProvider>
+        </Providers>
       </body>
     </html>
   )

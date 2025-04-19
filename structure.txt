@@ -2,6 +2,7 @@
 ├── README.md
 ├── app
 │   ├── ClientOnly.tsx
+│   ├── QueryProvider.tsx
 │   ├── auth
 │   │   └── callback
 │   ├── favicon.ico
@@ -10,10 +11,13 @@
 │   ├── login
 │   │   └── page.tsx
 │   ├── page.tsx
+│   ├── providers.tsx
 │   ├── student
-│   │   └── dashboard
+│   │   ├── dashboard
+│   │   └── layout.tsx
 │   └── supabase-provider.tsx
 ├── components
+│   ├── ClientOnly.tsx
 │   ├── Header.tsx
 │   ├── LogoutButton.tsx
 │   ├── QuestionFilterClient.tsx
@@ -30,7 +34,6 @@
 │   │   └── queries.ts
 │   ├── supabaseBrowser.ts
 │   └── supabaseClient.ts
-├── middleware.ts
 ├── next-env.d.ts
 ├── next.config.js
 ├── nohup.out
@@ -54,4 +57,4 @@
 │   └── supabase-server.ts
 └── vercel.json
 
-15 directories, 39 files
+15 directories, 42 files
